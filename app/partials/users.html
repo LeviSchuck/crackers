@@ -1,0 +1,7 @@
+<h2>Users and stuff.</h2>
+<ul>
+	<li ng-repeat="user in users">
+		{{user.name}}
+		Happy? <input type="checkbox" ng-model="user.happy" ng-click="saveUser(user)">
+	</li>
+</ul>	

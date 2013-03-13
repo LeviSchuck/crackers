@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" ng-app="Crackers">
+<head>
+  <meta charset="utf-8">
+  <title>Crackers</title>
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/foundation.css" />
+  <link rel="stylesheet" href="css/app.css"/>
+  <script src="js/vendor/custom.modernizr.js"></script>
+</head>
+<body ng-controller="CrackerController">
+<nav class="top-bar">
+  <ul class="title-area">
+    <!-- Title Area -->
+    <li class="name">
+      <h1><a href="#">Crackers</a></h1>
+    </li>
+  </ul>
+  <section class="top-bar-section">
+    <!-- Left Nav Section -->
+    <ul class="left">
+      <li class="divider"></li>
+        <li ng-repeat="menu in menus" ng-class="{active: menu.isActive}">
+          <a href="#{{menu.path}}">{{menu.text}}</a>
+        </li>
+        <li class="divider"></li>
+    </ul>
+    <ul class="right">
+      <li><a ng-click="auth.invert()" class="button">{{auth.invertText}} {{auth.user.email}}</a></li>
+    </ul>
+  </section>
+</nav>
+
+  <div ng-view></div>
+
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
+  -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-resource.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+  <script src="js/persona.js"></script>
+  <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? 'js/vendor/zepto' : 'js/vendor/jquery') +
+  '.js><\/script>')
+  </script>
+  
+  <script src="js/foundation.min.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+  <script src="https://login.persona.org/include.js"></script>
+</body>
+</html>
