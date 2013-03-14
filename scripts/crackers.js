@@ -73,7 +73,7 @@ server.get('/users', function(req, res, next){
 	});
 });
 server.get('/users/:userid', function(req, res, next){
-   User.find({_id: req.params.userid},function(err,user){
+   User.findOne({_id: req.params.userid},function(err,user){
    	if(user)
 		res.send(200, user);
    	else
@@ -85,20 +85,21 @@ server.get('/users/:userid', function(req, res, next){
 
 server.post('/users/:userid',ensureAuthenticated,function(req, res, next){
 	User.findOne({_id: req.params.userid},function(err,user){
-   	if(user){
-   		var user = _.omit(req.body,'_id');
-   		User.update({_id: req.params.userid}, user,function(err,a,raw){
-   			if(err){
-   				res.send(400,new restify.InvalidContentError(raw));
-   			}else{
-   				res.send(201,user);
-   			}
-   			return next();
-   		});
-   	}else{
-   		res.send(404, new restify.ResourceNotFoundError("No such user"));
-   		return next();
-   	}
+	   	if(user){
+
+	   		var user = _.omit(req.body,'_id');
+	   		User.update({_id: req.params.userid}, user,function(err,a,raw){
+	   			if(err){
+	   				res.send(400,new restify.InvalidContentError(raw));
+	   			}else{
+	   				res.send(201,user);
+	   			}
+	   			return next();
+	   		});
+	   	}else{
+	   		res.send(404, new restify.ResourceNotFoundError("No such user"));
+	   		return next();
+	   	}
    		
 
    });
