@@ -22,12 +22,12 @@
     <ul class="left">
       <li class="divider"></li>
         <li ng-repeat="menu in menus" ng-class="{active: menu.isActive}">
-          <a href="#{{menu.path}}">{{menu.text}}</a>
+          <a href="#{{menu.path}}" ng-bind-template="{{menu.text}}"></a>
         </li>
         <li class="divider"></li>
     </ul>
     <ul class="right">
-      <li><a ng-click="auth.invert()" class="button">{{auth.invertText}} {{auth.user.email}}</a></li>
+      <li><a ng-click="auth.invert()" class="button" ng-bind-template="{{auth.invertText}} {{auth.user.email}}">Login</a></li>
     </ul>
   </section>
 </nav>
@@ -38,7 +38,7 @@
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.4/angular.min.js"></script>
   -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script src="js/underscore-min.js"></script>
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular/angular-resource.js"></script>
   <script src="js/app.js"></script>

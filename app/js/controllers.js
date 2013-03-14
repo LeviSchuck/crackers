@@ -31,23 +31,38 @@ function CrackerController($scope,$location,Auth){
 	$scope.auth = {};
 	$scope.auth.invertText = "Login";
 	$scope.auth.user = null;
+	var persona_putUp = false;
+	function setup_persona(){
+		if(persona_putUp) return;
+		persona_putUp = true;
+		navigator.id.watch({
+		  onlogin: function(assertion) {
+		    var a = new Auth();
+		    a.assertion = assertion;
+		    a.$login(function(result){
+	    		$scope.auth.invertText = "Logout";
+	    		$scope.auth.user = result.user;
+		    });
+		    
+		  },
+		  onlogout: function() {
+		  	Auth.logout();
+		  }
+		});
+	};
 
-	navigator.id.watch({
-	  onlogin: function(assertion) {
-	    var a = new Auth();
-	    a.assertion = assertion;
-	    a.$login(function(result){
-    		$scope.auth.invertText = "Logout";
-    		$scope.auth.user = result.user;
-	    });
-	    
-	  },
-	  onlogout: function() {
-	  	Auth.logout();
-	  }
+	Auth.status(function(status){
+		if(status.authenticated){
+			$scope.auth.invertText = "Logout";
+	    	$scope.auth.user = status.user;
+		}else{
+			setup_persona();
+		}
 	});
+	
 	$scope.auth.invert = function(){
 		if($scope.auth.user){
+			setup_persona();
 			navigator.id.logout();
 			$scope.auth.invertText = "Login";
 			$location.path("/");
