@@ -25,6 +25,9 @@
           <a href="#{{menu.path}}" ng-bind-template="{{menu.text}}"></a>
         </li>
         <li class="divider"></li>
+        <li ng-show="auth.user.type=='admin'">
+          <input type="number" ng-model="limit" />
+        </li>
     </ul>
     <ul class="right">
       <li><a ng-click="auth.invert()" class="button" ng-bind-template="{{auth.invertText}} {{auth.user.email}}">Login</a></li>

@@ -19,4 +19,17 @@ angular.module('Crackers.services', ['ngResource']).
   		logout: {method:'DELETE', params: {}},
   		login: {method:'POST', params: {}}
   	});
+  }).
+  factory('Post',function($resource){
+    return $resource('/posts/:postid',{},{
+      query: {method: 'GET', isArray:true},
+      post: {method: 'PUT'},
+      del: {method: 'DELETE'}
+    });
+  }).
+  factory('Limit',function($resource){
+    return $resource('/limit',{},{
+      query: {method: 'GET'},
+      save: {method: 'POST'}
+    });
   });

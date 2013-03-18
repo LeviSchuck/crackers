@@ -1,7 +1,15 @@
 <h2>Users and stuff.</h2>
-<ul>
-	<li ng-repeat="user in users">
-		{{user.name}}
-		Happy? <input type="checkbox" ng-model="user.happy" ng-click="saveUser(user)">
-	</li>
-</ul>	
+<div ng-switch on="$parent.auth.user.type" class="row">
+	<div ng-switch-when="admin" class="columns large-12">
+		<div ng-repeat="user in users" class="">
+			<img ng-src="http://www.gravatar.com/avatar/{{user.hash}}?d=identicon" /> {{user.email}} Happy? <input type="checkbox" ng-model="user.happy" ng-click="saveUser(user)" >
+			<!--<fd-slider ng-model="user.happy" fd-size="small-2" fd-round fd-tiny off="Not Happy" on="Happy" ng-click="saveUser(user)">
+			</fs-slider>-->
+		</div>
+	</div>
+	<div ng-switch-default>
+		<div ng-repeat="user in users">
+			<img ng-src="http://www.gravatar.com/avatar/{{user.hash}}?d=identicon" /> {{user.email}} is <span ng-hide="user.happy">not</span> happy.
+		</div>
+	</div>
+</div>
