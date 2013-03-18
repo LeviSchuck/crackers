@@ -2,10 +2,10 @@
 <div ng-switch on="$parent.auth.user.type" class="row">
 	<div ng-switch-when="admin" class="columns large-12">
 		<div ng-repeat="user in users" class="row">
-			<img ng-src="http://www.gravatar.com/avatar/{{user.hash}}?d=identicon" class="small-1 columns" />
-			<div class="small-10 small-offset-1 columns">{{user.email}} 
+			<img ng-src="http://www.gravatar.com/avatar/{{user.hash}}?d=identicon" class="large-1 small-3 columns" />
+			<div class="large-10 small-9 large-offset-1 columns">{{user.email}} 
 				<!--Happy? <input type="checkbox" ng-model="user.happy" ng-click="saveUser(user)" >-->
-				<fd-slider ng-model="user.happy" fd-size="small-4" fd-round fd-tiny off="Not Happy" on="Happy" ng-click="saveUser(user)"></fs-slider>
+				<fd-slider ng-model="user.happy" fd-size="large-4" fd-round fd-tiny off="Not Happy" on="Happy" ng-click="saveUser(user)"></fs-slider>
 			</div>
 		</div>
 	</div>

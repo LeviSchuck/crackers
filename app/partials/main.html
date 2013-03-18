@@ -1,5 +1,5 @@
 <h1>Latest Posts</h1>
-<ul class="small-block-grid-4">
+<ul class="large-block-grid-3 ">
   <li ng-repeat="post in posts" class="row">
   	<div class="columns small-4">
   		<img ng-src="http://www.gravatar.com/avatar/{{post.hash}}?d=identicon" /> 
@@ -16,10 +16,12 @@
 <div ng-show="$parent.auth.user">
 	<h2>Write a new post</h2>
 	<form ng-submit="addPost()" class="row">
-		<div class="columns small-10">
+		<div class="columns large-10">
 			<input type="text" ng-model="postContents" ng-class="{error: hasError}" /> 
 			<small class="error" ng-show="hasError">{{error}}</small>
 		</div>
-		<input class="button columns small-1" type="submit" value="Post"/>
+		<div class="columns large-2">
+			<input class="button" type="submit" value="Post"/>
+		</div>
 	</form>
 </div>
