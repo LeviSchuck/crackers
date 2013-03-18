@@ -146,7 +146,7 @@ server.put('/posts',ensureAuthenticated,function(req,res,next){
 	res.send(201,p);
 	return next();
 });
-server.get('/posts',ensureAuthenticated,function(req,res,next){
+server.get('/posts',function(req,res,next){
 	Post.find(function (err, posts) {
 		if(posts){
 			res.send(200,posts);
