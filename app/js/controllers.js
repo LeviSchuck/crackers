@@ -98,20 +98,7 @@ function UserCtrl($scope, User){
 	var users = User.query();
 	$scope.users = users;
 	$scope.saveUser=function(user){
-		$scope.$apply(function(){
 			user.$save({userid: user._id});
-		});
 	};
-	/*$scope.users.forEach(function(user,index){
-		console.log(index);
-		$scope.$watch('users['+index+']',function(){
-			user.$save({userid: user._id});
-		})
-	});*/
-	
-	/*$scope.$watch('users[0].happy',function(){
-		$scope.saveUser($scope.users[0]);
-	})*/
-
 	
 }
