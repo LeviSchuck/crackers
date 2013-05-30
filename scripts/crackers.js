@@ -51,7 +51,7 @@ passport.use(new BrowserIDStrategy({
   }
 ));
 server.use(clientSessions({
-    cookieName: 'session_state',
+    cookieName: 'session',
     secret: 'super special thing that means absolutely nothing', 
     duration: 24 * 60 * 60 * 1000*42,
   }));
@@ -169,6 +169,7 @@ server.post('/limit',ensureAuthenticated,ensureAdmin,function(req,res,next){
 });
 function persona_authenticated(req, res, next){
 	var md5sum = crypto.createHash('md5');
+	req.session.lastAuth = new Date();
 	if(req.isAuthenticated()){
 		User.findOne({email: req.user.email},function(err,user){
 	   		if(user){
